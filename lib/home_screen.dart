@@ -61,6 +61,9 @@ class _HomeScreenState extends State<HomeScreen> {
             getScoreboard(),
             getGridView(),
             getResultButton(),
+            SizedBox(
+              height: 10.0,
+            ),
             getTurn(),
             SizedBox(
               height: 24.0,
@@ -75,6 +78,11 @@ class _HomeScreenState extends State<HomeScreen> {
     return Visibility(
       visible: finish,
       child: OutlinedButton(
+        style: OutlinedButton.styleFrom(
+          side: BorderSide(
+            color: textWhite,
+          ),
+        ),
         onPressed: () {
           ClearGame();
         },
