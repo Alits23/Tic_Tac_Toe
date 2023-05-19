@@ -1,8 +1,19 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_tic_tac_toe/constants/colors.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  bool isturn = true;
+  List<String> XorOList = ['', '', '', '', '', '', '', '', ''];
+  var Turn = '';
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +31,15 @@ class HomeScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
+            SizedBox(
+              height: 15.0,
+            ),
             getScoreboard(),
             getGridView(),
             getTurn(),
             SizedBox(
               height: 24.0,
-            )
+            ),
           ],
         ),
       ),
@@ -105,6 +119,16 @@ class HomeScreen extends StatelessWidget {
               child: Container(
                 height: 100,
                 width: 100,
+                child: Center(
+                  child: Text(
+                    XorOList[index],
+                    style: TextStyle(
+                        color:
+                            XorOList[index] == 'X' ? Colors.green : Colors.red,
+                        fontSize: 70,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey),
                 ),
@@ -116,13 +140,27 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  void onTap(int num) {
-    print('object ${num}');
+  void onTap(int index) {
+    setState(() {
+      if (XorOList[index] == '') {
+        if (isturn) {
+          XorOList[index] = 'O';
+        } else {
+          XorOList[index] = 'X';
+        }
+        isturn = !isturn;
+      }
+    });
   }
 
   Widget getTurn() {
+    if (isturn) {
+      Turn = 'Turn O';
+    } else {
+      Turn = 'Turn X';
+    }
     return Text(
-      'turn X',
+      Turn,
       style: TextStyle(
         fontSize: 30.0,
         color: textWhite,
