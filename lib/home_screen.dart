@@ -305,6 +305,7 @@ class _HomeScreenState extends State<HomeScreen> {
     if (equal == 9) {
       setState(() {
         winner = 'Draw , ';
+        finish = true;
       });
     }
   }
