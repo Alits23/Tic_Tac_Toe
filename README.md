@@ -1,6 +1,7 @@
 # flutter_tic_tac_toe
 
 A new Flutter project.
+Tic Tac Toe.
 
 ## Getting Started
 
